@@ -1,0 +1,411 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Cuaderno de consulta de Ronald Guzmán Dávila: filosofía y habilidades blandas, tendencias de video, banco de ideas y referentes documentales."><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Cuaderno de Rodaje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: un cuaderno de rodaje — cabecera con buscador fijo, pestañas por "rollo" (categoría), fichas tipo hoja de producción en rejilla, detalle en panel lateral */
+:root{
+  --bg:#EDF0EA; --surface:#F8F9F5; --surface-2:#E3E8E1;
+  --fg:#18211D; --muted:#4F5B54; --line:#CBD3CB;
+  --accent:#B4600F; --on-accent:#FFFFFF;
+  --c-filo:#4A4FA3; --c-tend:#B4600F; --c-idea:#2E7A4F; --c-ref:#A3405C;
+  --danger:#B3261E;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111714; --surface:#18201C; --surface-2:#202A25; --fg:#E8ECE5; --muted:#A3AEA6; --line:#2C3832;
+    --accent:#F0A04B; --on-accent:#14100B;
+    --c-filo:#9EA3F0; --c-tend:#F0A04B; --c-idea:#6FCB97; --c-ref:#EE8FA9; --danger:#F2867E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111714; --surface:#18201C; --surface-2:#202A25; --fg:#E8ECE5; --muted:#A3AEA6; --line:#2C3832;
+  --accent:#F0A04B; --on-accent:#14100B;
+  --c-filo:#9EA3F0; --c-tend:#F0A04B; --c-idea:#6FCB97; --c-ref:#EE8FA9; --danger:#F2867E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:1.05rem;line-height:1.6}
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* Cabecera */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding-block:.9rem}
+.brand{display:flex;align-items:center;gap:.6rem;margin-right:auto;min-width:0}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:#D93A2B;flex:none;animation:rec 1.6s steps(2,start) infinite}
+@keyframes rec{to{visibility:hidden}}
+.brand h1{font-size:1.35rem;font-weight:800}
+.brand .by{color:var(--muted)}
+.search{flex:1 1 260px;max-width:420px;display:flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.45rem .9rem}
+.search input{border:0;background:transparent;outline:none;width:100%;min-width:0;font-family:var(--f-display)}
+.search:focus-within{border-color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--f-display);font-weight:600;font-size:.95rem;padding:.55rem 1.05rem;border-radius:999px;border:1.5px solid var(--fg);background:transparent;cursor:pointer;text-decoration:none;color:var(--fg)}
+.btn.primary{background:var(--fg);color:var(--bg)}
+.btn.danger{border-color:var(--danger);color:var(--danger)}
+.btn.danger.solid{background:var(--danger);color:var(--bg)}
+.btn:hover{opacity:.88}
+
+/* Pestañas */
+.tabs{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.8rem;scrollbar-width:thin}
+.tab{flex:none;display:flex;align-items:center;gap:.5rem;font-family:var(--f-display);font-weight:600;font-size:.95rem;padding:.45rem .95rem;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;color:var(--fg)}
+.tab .sw{width:9px;height:9px;border-radius:50%;background:var(--c,var(--fg))}
+.tab .n{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.tab[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tab[aria-pressed="true"] .n{color:color-mix(in srgb,var(--bg) 70%,var(--fg))}
+
+/* Intro de rollo */
+.intro{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:end;padding-block:2.2rem 1.4rem}
+.intro h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+.intro p{color:var(--muted);max-width:60ch;margin-top:.5rem}
+.intro .eyebrow{color:var(--accent)}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
+.filters select{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.4rem .8rem;font-family:var(--f-display);font-size:.9rem}
+@media (max-width:720px){.intro{grid-template-columns:1fr}.filters{justify-content:flex-start}}
+
+.status{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);padding-bottom:1rem}
+.status.warn{color:var(--danger)}
+
+/* Fichas */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem;padding-bottom:4rem}
+.card{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0;cursor:pointer;display:flex;flex-direction:column;min-width:0;color:var(--fg);overflow:hidden;transition:transform .15s ease,border-color .15s ease}
+.card:hover{transform:translateY(-2px);border-color:var(--c)}
+.card .slug{display:flex;justify-content:space-between;gap:.5rem;padding:.55rem 1rem;border-bottom:1px dashed var(--line);font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.card .slug span:last-child{color:var(--muted)}
+.card .body{padding:1rem 1rem 1.1rem;display:grid;gap:.5rem;align-content:start;flex:1}
+.card h3{font-size:1.2rem;font-weight:700}
+.card .meta{font-family:var(--f-display);font-size:.88rem;color:var(--muted)}
+.card p.sum{color:var(--muted);font-size:.98rem;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.tag{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.04em;padding:.15rem .5rem;border-radius:4px;background:var(--surface-2);color:var(--muted)}
+.pill{font-family:var(--f-mono);font-size:.68rem;padding:.12rem .5rem;border-radius:999px;border:1px solid var(--c);color:var(--c)}
+
+.empty{border:1.5px dashed var(--line);border-radius:var(--radius);padding:3rem 1.5rem;text-align:center;display:grid;gap:.6rem;justify-items:center;color:var(--muted)}
+.empty h3{color:var(--fg);font-size:1.3rem}
+
+/* Panel */
+dialog{border:0;padding:0;background:var(--surface);color:var(--fg);max-width:min(640px,100%);width:100%;height:100%;max-height:100%;margin:0 0 0 auto;box-shadow:-20px 0 60px -20px rgba(0,0,0,.4)}
+dialog::backdrop{background:rgba(10,14,12,.45)}
+.panel{display:flex;flex-direction:column;height:100%}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem max(1.3rem,env(safe-area-inset-right,0px)) 1rem 1.3rem;padding-top:calc(1rem + env(safe-area-inset-top,0px));border-bottom:1px solid var(--line)}
+.panel-body{overflow-y:auto;padding:1.5rem max(1.3rem,env(safe-area-inset-right,0px)) 2rem 1.3rem;padding-bottom:calc(2rem + env(safe-area-inset-bottom,0px));display:grid;gap:1.1rem;align-content:start}
+.panel-body h2{font-size:1.9rem;font-weight:800}
+.detail p{max-width:62ch}
+.detail .lead{font-size:1.15rem}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem;font-family:var(--f-display);font-size:.95rem}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0;overflow-wrap:anywhere}
+.x{background:transparent;border:0;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--muted);padding:.2rem .5rem}
+.actions{display:flex;gap:.6rem;flex-wrap:wrap;padding-top:.6rem;border-top:1px solid var(--line)}
+
+/* Formulario */
+form.edit{display:grid;gap:1rem}
+.field{display:grid;gap:.3rem}
+.field label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.6rem .75rem;width:100%;min-width:0}
+.field textarea{resize:vertical;min-height:5rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.hint{font-size:.85rem;color:var(--muted)}
+.err{color:var(--danger);font-family:var(--f-display);font-size:.95rem}
+
+footer{padding-block:1.5rem 2.5rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <div class="brand"><span class="dot" aria-hidden="true"></span><h1>Cuaderno de Rodaje</h1><span class="by mono">R. Guzmán Dávila</span></div>
+      <label class="search" for="q">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm9 16-4-4"/></svg>
+        <input id="q" type="search" placeholder="Buscar conceptos, autores, formatos…" autocomplete="off">
+      </label>
+    </div>
+    <nav class="tabs" id="tabs" aria-label="Categorías"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <div>
+      <p class="mono eyebrow" id="i-eyebrow">Rollo completo</p>
+      <h2 id="i-title">Todo el cuaderno</h2>
+      <p id="i-text"></p>
+    </div>
+    <div class="filters">
+      <select id="f-tag" aria-label="Filtrar por etiqueta"><option value="">Todas las etiquetas</option></select>
+      <select id="f-plat" aria-label="Filtrar por plataforma" hidden><option value="">Todas las plataformas</option></select>
+    </div>
+  </section>
+  <p class="status" id="status">Cargando el cuaderno…</p>
+  <div class="grid" id="grid" aria-live="polite"></div>
+</main>
+
+<footer><div class="wrap">Cuaderno de consulta de Ronald Guzmán Dávila · Filosofía, habilidades blandas, tendencias, ideas y referentes para el oficio audiovisual y musical.</div></footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="panel">
+    <div class="panel-head">
+      <span class="mono" id="dlg-kicker"></span>
+      <button class="x" type="button" id="dlg-close" aria-label="Cerrar">×</button>
+    </div>
+    <div class="panel-body" id="dlg-body"></div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var CATS = {
+    filosofia:{label:"Filosofía y habilidades", short:"Filosofía", color:"var(--c-filo)", eyebrow:"Rollo 01", text:"Conceptos, autores y herramientas de habilidades blandas, siempre con su aplicación al set, al estudio y a la relación con clientes."},
+    tendencias:{label:"Tendencias de video", short:"Tendencias", color:"var(--c-tend)", eyebrow:"Rollo 02", text:"Qué formatos están funcionando y cómo crecer en seguidores de forma natural. Conviene revisar la fecha de cada ficha: las tendencias cambian rápido."},
+    ideas:{label:"Banco de ideas", short:"Ideas", color:"var(--c-idea)", eyebrow:"Rollo 03", text:"Ideas para videos y documentales, con su estado: idea, en desarrollo o producido."},
+    referentes:{label:"Referentes documentales", short:"Referentes", color:"var(--c-ref)", eyebrow:"Rollo 04", text:"Documentales y obras de referencia, con lo que vale la pena aprender de cada uno."}
+  };
+  var ORDER = ["filosofia","tendencias","ideas","referentes"];
+  var ESTADOS = ["Idea","En desarrollo","Producido"];
+  var PLATS = ["YouTube","TikTok","Instagram","Facebook","Spotify / podcast","Varias"];
+
+  var state = {entries:[], cat:"", q:"", tag:"", plat:"", canWrite:false, loaded:false};
+  var db = null;
+  var $ = function(id){return document.getElementById(id)};
+
+  function el(tag, cls, text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e}
+  function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
+  function safeUrl(u){return typeof u==="string" && /^https:\/\//i.test(u.trim()) ? u.trim() : ""}
+  function fmtDate(iso){try{return new Date(iso).toLocaleDateString("es-EC",{day:"numeric",month:"short",year:"numeric"})}catch(e){return ""}}
+
+  // --- Ruta por hash ---
+  function readHash(){var h=location.hash.replace("#",""); state.cat = CATS[h] ? h : ""; }
+  window.addEventListener("hashchange",function(){readHash(); state.tag=""; render()});
+  readHash();
+
+  // --- Render ---
+  function filtered(){
+    var q = norm(state.q);
+    return state.entries.filter(function(e){
+      if(state.cat && e.categoria!==state.cat) return false;
+      if(state.tag && (e.etiquetas||[]).indexOf(state.tag)<0) return false;
+      if(state.plat && e.plataforma!==state.plat) return false;
+      if(q){
+        var hay = norm([e.titulo,e.resumen,e.detalle,e.autor,e.aplicacion,(e.etiquetas||[]).join(" ")].join(" "));
+        if(hay.indexOf(q)<0) return false;
+      }
+      return true;
+    }).sort(function(a,b){
+      if(!state.cat){var d=ORDER.indexOf(a.categoria)-ORDER.indexOf(b.categoria); if(d) return d}
+      return (a.orden||999)-(b.orden||999) || String(a.titulo).localeCompare(String(b.titulo),"es");
+    });
+  }
+
+  function renderTabs(){
+    var tabs=$("tabs"); tabs.textContent="";
+    var all=[{k:"",label:"Todo",color:"var(--fg)"}].concat(ORDER.map(function(k){return {k:k,label:CATS[k].label,color:CATS[k].color}}));
+    all.forEach(function(t){
+      var b=el("button","tab"); b.type="button"; b.style.setProperty("--c",t.color);
+      b.setAttribute("aria-pressed", String(state.cat===t.k));
+      b.appendChild(el("span","sw")); b.appendChild(el("span",null,t.label));
+      var n = t.k ? state.entries.filter(function(e){return e.categoria===t.k}).length : state.entries.length;
+      b.appendChild(el("span","n",String(n)));
+      b.addEventListener("click",function(){ if(t.k) location.hash=t.k; else history.replaceState(null,"",location.pathname+location.search), readHash(), state.tag="", render(); });
+      tabs.appendChild(b);
+    });
+  }
+
+  function renderIntro(){
+    var c = CATS[state.cat];
+    $("i-eyebrow").textContent = c ? c.eyebrow : "Rollo completo";
+    $("i-title").textContent = c ? c.label : "Todo el cuaderno";
+    $("i-text").textContent = c ? c.text : "Tu material de consulta en un solo lugar. Elige un rollo arriba o busca por palabra, autor o etiqueta.";
+    // etiquetas disponibles
+    var pool = state.entries.filter(function(e){return !state.cat || e.categoria===state.cat});
+    var tags = {}; pool.forEach(function(e){(e.etiquetas||[]).forEach(function(t){tags[t]=(tags[t]||0)+1})});
+    var sel=$("f-tag"); var cur=state.tag; sel.textContent="";
+    var o0=el("option",null,"Todas las etiquetas"); o0.value=""; sel.appendChild(o0);
+    Object.keys(tags).sort(function(a,b){return a.localeCompare(b,"es")}).forEach(function(t){var o=el("option",null,t+" ("+tags[t]+")"); o.value=t; sel.appendChild(o)});
+    sel.value = tags[cur] ? cur : ""; state.tag = sel.value;
+    var ps=$("f-plat"); var showPlat = state.cat==="tendencias" || state.cat==="ideas";
+    ps.hidden=!showPlat; if(!showPlat){state.plat=""}
+    if(ps.options.length<2){PLATS.forEach(function(p){var o=el("option",null,p); o.value=p; ps.appendChild(o)})}
+    ps.value=state.plat;
+  }
+
+  function card(e){
+    var c = CATS[e.categoria]||CATS.filosofia;
+    var b=el("button","card"); b.type="button"; b.style.setProperty("--c",c.color);
+    var slug=el("div","slug"); slug.appendChild(el("span",null,c.short));
+    var right = e.categoria==="ideas" ? (e.estado||"Idea") : (e.plataforma || e.anio || "");
+    slug.appendChild(el("span",null,String(right))); b.appendChild(slug);
+    var body=el("div","body");
+    body.appendChild(el("h3",null,e.titulo||"Sin título"));
+    if(e.autor) body.appendChild(el("p","meta",e.autor));
+    if(e.resumen) body.appendChild(el("p","sum",e.resumen));
+    if((e.etiquetas||[]).length){var tg=el("div","tags"); e.etiquetas.slice(0,4).forEach(function(t){tg.appendChild(el("span","tag",t))}); body.appendChild(tg)}
+    b.appendChild(body);
+    b.addEventListener("click",function(){openDetail(e)});
+    return b;
+  }
+
+  function render(){
+    renderTabs(); renderIntro();
+    var grid=$("grid"); grid.textContent="";
+    if(!state.loaded) return;
+    var list=filtered();
+    if(!list.length){
+      var em=el("div","empty"); em.style.gridColumn="1/-1";
+      if(!state.entries.length){
+        em.appendChild(el("h3",null,"El cuaderno está vacío"));
+        em.appendChild(el("p",null, state.canWrite ? "Añade la primera entrada con el botón «+ Nueva entrada»." : "Aún no hay entradas. Vuelve pronto."));
+      } else {
+        em.appendChild(el("h3",null,"Nada coincide con tu búsqueda"));
+        em.appendChild(el("p",null,"Prueba con otra palabra o quita el filtro de etiqueta."));
+      }
+      grid.appendChild(em); return;
+    }
+    list.forEach(function(e){grid.appendChild(card(e))});
+  }
+
+  // --- Detalle ---
+  var dlg=$("dlg");
+  $("dlg-close").addEventListener("click",function(){dlg.close()});
+  dlg.addEventListener("click",function(ev){if(ev.target===dlg) dlg.close()});
+
+  function openDetail(e){
+    var c=CATS[e.categoria]||CATS.filosofia;
+    $("dlg-kicker").textContent=c.label; $("dlg-kicker").style.color=c.color;
+    var body=$("dlg-body"); body.textContent="";
+    var h=el("h2",null,e.titulo); h.id="dlg-title"; body.appendChild(h);
+    var d=el("div","detail"); d.style.display="grid"; d.style.gap="1rem";
+    if(e.resumen) d.appendChild(el("p","lead",e.resumen));
+    String(e.detalle||"").split(/\n\s*\n/).filter(Boolean).forEach(function(par){d.appendChild(el("p",null,par.trim()))});
+    if(e.aplicacion){
+      var ap=el("div"); ap.style.cssText="border-left:3px solid "+c.color+";padding-left:1rem;display:grid;gap:.3rem";
+      ap.appendChild(el("p","mono",e.categoria==="referentes"?"Qué aprender":"Cómo aplicarlo"));
+      ap.appendChild(el("p",null,e.aplicacion)); d.appendChild(ap);
+    }
+    body.appendChild(d);
+    var facts=el("dl","facts");
+    function fact(k,v){if(!v) return; facts.appendChild(el("dt",null,k)); var dd=el("dd"); if(v instanceof Node) dd.appendChild(v); else dd.textContent=v; facts.appendChild(dd)}
+    fact(e.categoria==="referentes"?"Dirección":"Autor / fuente", e.autor);
+    fact("Año", e.anio?String(e.anio):"");
+    fact("Plataforma", e.plataforma);
+    fact("Estado", e.categoria==="ideas"?(e.estado||"Idea"):"");
+    var u=safeUrl(e.enlace); if(u){var a=el("a",null,u.replace(/^https:\/\//,"")); a.href=u; a.target="_blank"; a.rel="noopener"; a.style.color="var(--accent)"; fact("Enlace",a)}
+    fact("Actualizado", e.actualizado?fmtDate(e.actualizado):"");
+    if(facts.childNodes.length) body.appendChild(facts);
+    if((e.etiquetas||[]).length){var tg=el("div","tags"); e.etiquetas.forEach(function(t){var s=el("button","tag",t); s.type="button"; s.style.border="0"; s.style.cursor="pointer"; s.addEventListener("click",function(){dlg.close(); if(state.cat && state.cat!==e.categoria){location.hash=e.categoria} state.tag=t; render()}); tg.appendChild(s)}); body.appendChild(tg)}
+    if(state.canWrite){
+      var act=el("div","actions");
+      var ed=el("button","btn","Editar"); ed.type="button"; ed.addEventListener("click",function(){openForm(e)});
+      var del=el("button","btn danger","Eliminar"); del.type="button";
+      del.addEventListener("click",function(){
+        if(del.dataset.armed){ doDelete(e, del); return; }
+        del.dataset.armed="1"; del.textContent="¿Eliminar de verdad? Pulsa otra vez"; del.classList.add("solid");
+        setTimeout(function(){ if(del.isConnected && !del.disabled){delete del.dataset.armed; del.textContent="Eliminar"; del.classList.remove("solid")} },5000);
+      });
+      act.appendChild(ed); act.appendChild(del); body.appendChild(act);
+    }
+    if(!dlg.open) dlg.showModal();
+    body.scrollTop=0;
+  }
+
+  async function doDelete(e, btn){
+    btn.disabled=true; btn.textContent="Eliminando…";
+    try{ await db.collection("entradas").doc(e.id).delete(); dlg.close(); }
+    catch(err){ btn.disabled=false; btn.textContent="No se pudo eliminar. Reintentar"; }
+  }
+
+  // --- Formulario ---
+  function field(label,id,node,hint){var f=el("div","field"); var l=el("label",null,label); l.htmlFor=id; node.id=id; f.appendChild(l); f.appendChild(node); if(hint) f.appendChild(el("p","hint",hint)); return f}
+  function input(v,type){var i=document.createElement("input"); i.type=type||"text"; i.value=v||""; return i}
+  function area(v,rows){var t=document.createElement("textarea"); t.rows=rows||4; t.value=v||""; return t}
+  function select(opts,v,blank){var s=document.createElement("select"); if(blank){var o=el("option",null,blank); o.value=""; s.appendChild(o)} opts.forEach(function(x){var o=el("option",null,x.label||x); o.value=x.value||x; s.appendChild(o)}); s.value=v||(blank?"":(opts[0].value||opts[0])); return s}
+
+  function openForm(e){
+    var isNew=!e; e=e||{categoria:state.cat||"filosofia"};
+    $("dlg-kicker").textContent=isNew?"Nueva entrada":"Editar entrada"; $("dlg-kicker").style.color="var(--accent)";
+    var body=$("dlg-body"); body.textContent="";
+    var h=el("h2",null,isNew?"Nueva entrada":"Editar: "+e.titulo); h.id="dlg-title"; body.appendChild(h);
+    var f=el("form","edit"); f.noValidate=true;
+    var sCat=select(ORDER.map(function(k){return {value:k,label:CATS[k].label}}),e.categoria);
+    var iTit=input(e.titulo); iTit.required=true; iTit.maxLength=140;
+    var iRes=area(e.resumen,3), iDet=area(e.detalle,7), iApl=area(e.aplicacion,3);
+    var iAut=input(e.autor), iAnio=input(e.anio,"text"), iUrl=input(e.enlace,"url"), iTags=input((e.etiquetas||[]).join(", "));
+    var sPlat=select(PLATS,e.plataforma,"Sin plataforma"), sEst=select(ESTADOS,e.estado||"Idea");
+    f.appendChild(field("Categoría","fm-cat",sCat));
+    f.appendChild(field("Título","fm-tit",iTit));
+    f.appendChild(field("Resumen","fm-res",iRes,"Una o dos frases. Es lo que se ve en la ficha."));
+    f.appendChild(field("Detalle","fm-det",iDet,"Deja una línea en blanco para separar párrafos."));
+    f.appendChild(field("Cómo aplicarlo / qué aprender","fm-apl",iApl));
+    var r1=el("div","row2"); r1.appendChild(field("Autor, fuente o dirección","fm-aut",iAut)); r1.appendChild(field("Año","fm-anio",iAnio)); f.appendChild(r1);
+    var r2=el("div","row2"); var fPlat=field("Plataforma","fm-plat",sPlat); var fEst=field("Estado (ideas)","fm-est",sEst); r2.appendChild(fPlat); r2.appendChild(fEst); f.appendChild(r2);
+    f.appendChild(field("Enlace","fm-url",iUrl,"Opcional. Debe empezar por https://"));
+    f.appendChild(field("Etiquetas","fm-tags",iTags,"Separadas por comas. Ej.: comunicación, clientes"));
+    function syncEst(){fEst.hidden = sCat.value!=="ideas"} sCat.addEventListener("change",syncEst); syncEst();
+    var err=el("p","err"); err.hidden=true; f.appendChild(err);
+    var act=el("div","actions"); var save=el("button","btn primary",isNew?"Guardar entrada":"Guardar cambios"); save.type="submit";
+    var cancel=el("button","btn","Cancelar"); cancel.type="button"; cancel.addEventListener("click",function(){ if(isNew) dlg.close(); else openDetail(e) });
+    act.appendChild(save); act.appendChild(cancel); f.appendChild(act);
+    f.addEventListener("submit",async function(ev){
+      ev.preventDefault(); err.hidden=true;
+      var tit=iTit.value.trim(); if(!tit){err.textContent="Escribe un título para guardar la entrada."; err.hidden=false; iTit.focus(); return}
+      var url=iUrl.value.trim(); if(url && !safeUrl(url)){err.textContent="El enlace debe empezar por https://"; err.hidden=false; iUrl.focus(); return}
+      var data={
+        categoria:sCat.value, titulo:tit, resumen:iRes.value.trim(), detalle:iDet.value.trim(), aplicacion:iApl.value.trim(),
+        autor:iAut.value.trim(), anio:iAnio.value.trim(), plataforma:sPlat.value, enlace:url,
+        etiquetas:iTags.value.split(",").map(function(t){return t.trim().toLowerCase()}).filter(Boolean).slice(0,12),
+        estado: sCat.value==="ideas" ? sEst.value : "",
+        orden: e.orden||999, actualizado:new Date().toISOString()
+      };
+      save.disabled=true; save.textContent="Guardando…";
+      try{
+        var ref = isNew ? db.collection("entradas").doc() : db.collection("entradas").doc(e.id);
+        await ref.set(data);
+        data.id=ref.id; openDetail(data);
+      }catch(x){
+        save.disabled=false; save.textContent="Reintentar";
+        err.textContent = x && x.code==="quota_exceeded" ? "El cuaderno está lleno. Elimina alguna entrada para añadir más." : "No se pudo guardar. Revisa tu conexión y vuelve a intentarlo.";
+        err.hidden=false;
+      }
+    });
+    body.appendChild(f);
+    if(!dlg.open) dlg.showModal();
+    iTit.focus();
+  }
+
+  $("q").addEventListener("input",function(ev){state.q=ev.target.value; render()});
+  $("f-tag").addEventListener("change",function(ev){state.tag=ev.target.value; render()});
+  $("f-plat").addEventListener("change",function(ev){state.plat=ev.target.value; render()});
+
+  // --- Datos ---
+  function setStatus(t,warn){var s=$("status"); s.textContent=t; s.classList.toggle("warn",!!warn); s.hidden=!t}
+  render();
+
+  (async function(){
+    try{
+      var r = await fetch("entradas.json", {cache:"no-cache"});
+      if(!r.ok) throw new Error(r.status);
+      var list = await r.json();
+      state.entries = list.map(function(x){ if(!Array.isArray(x.etiquetas)) x.etiquetas=[]; return x });
+      state.loaded = true; setStatus("");
+    }catch(e){
+      state.loaded = true; setStatus("No se pudo cargar el cuaderno. Recarga la página.", true);
+    }
+    render();
+  })();
+})();
+</script>
+</body>
+</html>
